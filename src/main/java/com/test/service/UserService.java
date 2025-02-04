@@ -4,11 +4,12 @@ import java.util.List;
 
 
 import com.test.model.UserAddress;
+import com.test.model.UserDetails;
 
 
 public interface UserService {
 	
-	List<UserAddress> saveAddress(UserAddress userAddress);
+	List<UserDetails> saveAddress(UserDetails userDetails) throws Exception;
 	
 
 }

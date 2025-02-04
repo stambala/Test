@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.model.UserAddress;
+import com.test.model.UserDetails;
 import com.test.service.UserService;
 
 @RestController
@@ -21,13 +22,12 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/address")
-	public ResponseEntity<List<UserAddress>> saveAdderss(@RequestBody UserAddress userAddress) {
+	public ResponseEntity<List<UserDetails>> saveAdderss(@RequestBody UserDetails userAddress) throws Exception {
 		
 		
-		List<UserAddress> listUserAddress = userService.saveAddress(userAddress);
+		List<UserDetails> listUserDetails = userService.saveAddress(userAddress);
 		
-	
-		return new ResponseEntity<>(listUserAddress, HttpStatus.CREATED);
+		return new ResponseEntity<>(listUserDetails, HttpStatus.CREATED);
 	
 	}
 
