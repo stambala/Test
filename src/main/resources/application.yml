@@ -1,0 +1,9 @@
+spring :
+  application :
+    name : Test
+  
+  h2 :
+    console : 
+      enabled : true
+   
+  
