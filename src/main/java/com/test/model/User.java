@@ -3,6 +3,8 @@ package com.test.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import lombok.Data;
+@Data
 public class User implements Serializable {
 	
 	

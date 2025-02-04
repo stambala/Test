@@ -1,5 +1,14 @@
 package com.test.service;
 
-public class UserService {
+import java.util.List;
+
+
+import com.test.model.UserAddress;
+
+
+public interface UserService {
+	
+	List<UserAddress> saveAddress(UserAddress userAddress);
+	
 
 }
