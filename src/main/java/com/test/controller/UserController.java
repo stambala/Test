@@ -2,13 +2,12 @@ package com.test.controller;
 
 import java.util.List;
 
+import com.test.service.BalanceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.test.model.UserAddress;
 import com.test.model.UserDetails;
@@ -19,16 +18,26 @@ import com.test.service.UserService;
 public class UserController {
 	
 	@Autowired
+	@Qualifier("productImpl")
 	private UserService userService;
+
+	@Autowired
+	private BalanceService service;
 	
 	@PostMapping("/address")
-	public ResponseEntity<List<UserDetails>> saveAdderss(@RequestBody UserDetails userAddress) throws Exception {
+	public ResponseEntity<UserDetails> saveAdderss(@RequestBody UserDetails userAddress) throws Exception {
 		
 		
-		List<UserDetails> listUserDetails = userService.saveAddress(userAddress);
+		UserDetails listUserDetails = userService.saveAddress(userAddress);
 		
 		return new ResponseEntity<>(listUserDetails, HttpStatus.CREATED);
 	
+	}
+
+	@GetMapping("/balance/{accountNumber}")
+	public ResponseEntity<Double> checkBalance(@PathVariable String accountNumber) {
+		Double baalance = service.checkBalance(accountNumber);
+		return new ResponseEntity<>(baalance,HttpStatus.ACCEPTED);
 	}
 
 }
